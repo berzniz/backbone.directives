@@ -1,0 +1,37 @@
+body {
+  background-color: #dedede;
+  font: 16px/1.4 Open Sans, Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+
+.wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.block {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-bottom: 1px solid #b1b1b1;
+}
+
+.red {
+    color: red;
+}
+
+.bold {
+  font-weight: 400;
+}
+
+.example {
+  border: 1px solid #cccccc;
+}
+
+h2 {
+  font-weight: 400;
+}
+
+ul {
+  list-style: none;
+}

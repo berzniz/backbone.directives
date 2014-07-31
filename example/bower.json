@@ -1,0 +1,18 @@
+{
+  "name": "backbone.directives.example",
+  "version": "0.0.1",
+  "authors": [
+    "Tal Bereznitskey <berzniz@gmail.com>"
+  ],
+  "description": "Showcase Backbone Directives",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "json2": "*",
+    "jquery": "~2.1.1"
+  }
+}
