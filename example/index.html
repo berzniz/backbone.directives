@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Backbone Directives Example</title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+  
+  <h1>Backbone Directives Examples</h1>
+
+  <div class="block">
+    <p>These are some examples of the <strong>Backbone Directives</strong> being used.</p>
+    <p>The binding are declared as directives on the html itself and the view becomes a <strong>live view</strong>.</p>
+    <ul>
+      <li><a href="#bb-bind">bb-bind</a></li>
+      <li><a href="#bb-class">bb-class</a></li>
+      <li><a href="#bb-show">bb-show</a></li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <a name="bb-bind">
+    <h2>bb-bind</h2>
+    <p>Updates the text of an element based on the model's attributes. Expressions are also evaluated.</p>
+    <p><strong>Usage:</strong></p>
+    <p><em>&lt;span <strong>bb-bind=&quot;counter&quot;</strong>&gt;&lt;/span&gt;</em></p>
+    <p><em>&lt;span <strong>bb-bind=&quot;counter * 2&quot;</strong>&gt;&lt;/span&gt;</em></p>
+    <p><em>&lt;span <strong>bb-bind=&quot;counter % 2 == 0 ? 'even' : 'odd'&quot;</strong>&gt;&lt;/span&gt;</em></p>
+    <p><strong>Example:</strong></p>
+    <div class="example bb-bind">
+      <p><button class="decrease">-</button> <span bb-bind="counter"></span> <button class="increase">+</button></p>
+      <p>Let's double it: <span bb-bind="counter * 2"></span></p>
+      <p>It is an <strong bb-bind="counter % 2 == 0 ? 'even' : 'odd'"></strong> number</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <a name="bb-class">
+    <h2>bb-class</h2>
+    <p>Add/Removes a class based on the model's attributes. Expressions are also evaluated.</p>
+    <p><strong>Usage:</strong></p>
+    <em>&lt;span <strong>bb-class=&quot;{red: flag, bold: bold}&quot;</strong>&gt;What&#x27;s my color?&lt;/span&gt;</em>
+    <p><strong>Example:</strong></p>
+    <div class="example bb-class">
+      <button class="toggle">Toggle Color</button>
+      <button class="toggle-bold">Toggle Bold</button>
+      <span bb-class="{red: flag, bold: bold}">What's my color?</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <a name="bb-show">
+    <h2>bb-show</h2>
+    <p>Show/Hides the element based on the model's attributes. Expressions are also evaluated.</p>
+    <p><strong>Usage:</strong></p>
+    <em>&lt;span <strong>bb-show=&quot;flag&quot;</strong>&gt;Hello World!&lt;/span&gt;</em>
+    <p><strong>Example:</strong></p>
+    <div class="example bb-show">
+      <button class="toggle">Toggle Visibility</button>
+      <span bb-show="flag">Hello World!</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <p>I'd love to talk about this over at Twitter: <a href="http://twitter.com/ketaocde">@ketacode</a></p>
+  </div>
+
+</div>
+
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/json2/json2.js"></script>
+  <script src="bower_components/backbone/backbone.js"></script>
+  <script src="../src/backbone.directives.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
