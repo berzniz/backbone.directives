@@ -50,3 +50,19 @@ var bbShowView = new ExampleView({
     el: $('.example.bb-class'),
     model: new Backbone.Model()
 });
+
+var bbModelView = new ExampleView({
+    el: $('.example.bb-model'),
+    model: new Backbone.Model({
+        name: 'Jane',
+        checkbox: true,
+        radio: 'First'
+    })
+});
+
+var bbSrcView = new ExampleView({
+    el: $('.example.bb-src'),
+    model: new Backbone.Model({
+        image_id: '3350937627'
+    })
+});

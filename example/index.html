@@ -17,8 +17,11 @@
     <ul>
       <li><a href="#bb-bind">bb-bind</a></li>
       <li><a href="#bb-class">bb-class</a></li>
+      <li><a href="#bb-model">bb-model</a></li>
       <li><a href="#bb-show">bb-show</a></li>
+      <li><a href="#bb-src">bb-src</a></li>
     </ul>
+    <p>Source code is on <a href="https://github.com/berzniz/backbone.directives">GitHub</a> and read the <a href="http://berzniz.com/post/93498862096/give-your-backbone-js-apps-super-powers-with-angularjs">blog post</a> about it</p>
   </div>
 
   <div class="block">
@@ -52,6 +55,36 @@
   </div>
 
   <div class="block">
+    <a name="bb-model">
+    <h2>bb-model</h2>
+    <p>Binds an attribute to an input element.</p>
+    <p><strong>Usage:</strong></p>
+    <p><em>&lt;input <strong>bb-model=&quot;name&quot;</strong>&gt;</em></p>
+    <p><strong>Example:</strong></p>
+    <div class="example bb-model">
+      <p>
+        <input bb-model="name" placeholder="Enter name">
+        <br>
+        My name is <strong bb-bind="name"></strong>!
+      </p>
+      <p>
+        <label><input type="checkbox" bb-model="checkbox"> Checkbox</label>
+        <br>
+        The checkbox is <strong bb-bind="checkbox ? 'on' : 'off'"></strong>.
+      </p>
+      <p>
+        <label><input type="radio" bb-model="radio" name="group" value="First"> First</label>
+        <br>
+        <label><input type="radio" bb-model="radio" name="group" value="Second"> Second</label>
+        <br>
+        <label><input type="radio" bb-model="radio" name="group" value="Third"> Third</label>
+        <br>
+        The radio button is <strong bb-bind="radio"></strong>.
+      </p>
+    </div>
+  </div>
+
+  <div class="block">
     <a name="bb-show">
     <h2>bb-show</h2>
     <p>Show/Hides the element based on the model's attributes. Expressions are also evaluated.</p>
@@ -61,6 +94,18 @@
     <div class="example bb-show">
       <button class="toggle">Toggle Visibility</button>
       <span bb-show="flag">Hello World!</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <a name="bb-src">
+    <h2>bb-src</h2>
+    <p>Binds an image's source to the model's attributes using a template form.</p>
+    <p><strong>Usage:</strong></p>
+    <em>&lt;img <strong>bb-src=&quot;http://www.example.com/{{name}}.png&quot;</strong>&gt;</em>
+    <p><strong>Example:</strong></p>
+    <div class="example bb-src">
+      <img bb-src="https://pbs.twimg.com/profile_images/{{image_id}}/db17aea00972dc20909b8095e8a4fc1a_200x200.jpeg">
     </div>
   </div>
 
