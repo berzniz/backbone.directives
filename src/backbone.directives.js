@@ -16,8 +16,9 @@
             }, this);
         },
 
-        $watch: function(model, func) {
-            this.listenTo(model, 'change', func);
+        $watch: function(model, func, event) {
+            event = event || 'change';
+            this.listenTo(model, event, func);
             func();
         }
 
@@ -35,6 +36,11 @@
         };
     };
 
+    var $expr_from_template = function(template) {
+        var source = '"' + template.replace(/{{/g, '" + (').replace(/}}/g, ') + "') + '"';
+        return compile(source);
+    };
+
     $register_simple_directive('bb-show', function(model, $el, expr) {
         var show = !!expr(model.toJSON());
         $el.toggle(show);
@@ -44,6 +50,15 @@
         var value = expr(model.toJSON());
         $el.text(_.isUndefined(value) ? '' : value);
     });
+
+    Backbone.Directives['bb-src'] = function(model, $el) {
+        var name = 'bb-src';
+        var expr = $expr_from_template($el.attr(name));
+        this.$watch(model, function() {
+            var src = expr(model.toJSON());
+            $el.attr('src', src);
+        });
+    };
 
     Backbone.Directives['bb-class'] = function(model, $el) {
         var name = 'bb-class';
@@ -55,6 +70,68 @@
                 $el.toggleClass(className, !!value);
             }, this);
         });
+    };
+
+    Backbone.Directives['bb-model'] = function(model, $el) {
+        var _this = this;
+        var name = 'bb-model';
+        var attr = $el.attr(name);
+        var changeEvent = 'change:' + attr;
+        var isTextField = !$el.attr('type') || ($el.attr('type') == 'text') || ($el.attr('type') == 'password');
+        var changeFunction = function() {
+            var value = _this.model.get(attr);
+            var tagName = $el.prop('tagName');
+            if (tagName == 'SELECT') {
+                $el.val(value);
+            } else if ($el.attr('type') == 'checkbox') {
+                $el.prop('checked', value);
+            } else if ($el.attr('type') == 'radio') {
+                (value == $el.val()) && $el.prop('checked', true);
+            } else if (tagName == 'INPUT') {
+                $el.val(value);
+            }
+        };
+        this.$watch(model, changeFunction, changeEvent);
+
+        var updateModel = function(attr, value, silent) {
+            if (_.isBoolean(value) || (_.isString(value) && value.length > 0)) {
+                if (value == parseInt(value, 10)) {
+                    value = parseInt(value, 10);
+                }
+                _this.model.set(attr, value, {
+                    silent: silent
+                });
+            } else {
+                _this.model.unset(attr, {
+                    silent: silent
+                });
+            }
+        };
+
+        $el.on('change', function() {
+            var value = ($el.attr('type') == 'checkbox') ? $el.is(':checked') : $el.val();
+            updateModel(attr, value, false);
+        });
+        if (isTextField) {
+            $el.on('keyup', function(e) {
+                e = e || event;
+                var tabKeyCode = 9;
+                if (e.keyCode == tabKeyCode) {
+                    return;
+                }
+                var value = $el.val();
+                updateModel(attr, value, false);
+            }).on('blur', function() {
+                var value = $el.val();
+                updateModel(attr, value, false);
+            });            
+        } else if ($el.attr('type') == 'radio') {
+            $el.on('click', function() {
+                var value = $(this).val();
+                updateModel(attr, value, false);
+            });
+        }
+
     };
 
     
