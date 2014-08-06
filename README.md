@@ -4,7 +4,7 @@ Give your [Backbone.js](http://documentcloud.github.com/backbone) apps super-pow
 
 ## What/Why?
 
-Everything is explained in this blog post: TBD.
+Everything is explained in this blog post: [Give your Backbone.js apps super-powers with AngularJS style directives](http://berzniz.com/post/93498862096/give-your-backbone-js-apps-super-powers-with-angularjs).
 
 ## Demo
 
